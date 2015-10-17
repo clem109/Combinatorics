@@ -2,7 +2,7 @@ __author__ = 'clementvenard'
 
 count = 1
 
-text_file = open("fizzbuzz.txt", "r")
+text_file = open("input.txt", "r")
 lines = text_file.read().split(' ')
 # converting lines into int values
 lines = [int(i) for i in lines]
@@ -32,7 +32,5 @@ for i in range(n):
         count += 1
 
 outputLines = ' '.join(str(e) for e in outputLines)
-print(outputLines)
-
 outputFile = open("output.txt", 'a')
 outputFile.write(outputLines)
