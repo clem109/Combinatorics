@@ -1,36 +1,45 @@
 __author__ = 'clementvenard'
 
-count = 1
+f = open('output.txt', 'r+')
+f.truncate()
+List = open("input.txt").read().splitlines()
+listLength = len(List)
+listPos = 0
 
-text_file = open("input.txt", "r")
-lines = text_file.read().split(' ')
-# converting lines into int values
-lines = [int(i) for i in lines]
-text_file.close()
+for i in range(listLength):
+    outputLines = []
+    StringUnderTest = List[listPos]
+    ListUnderTest = StringUnderTest.split()
+    ListUnderTest = [int(i) for i in ListUnderTest]
+    listPos += 1
+    x = ListUnderTest[0]
+    y = ListUnderTest[1]
+    n = ListUnderTest[2]
+    count = 1
 
-x = lines[0]
-y = lines[1]
-n = lines[2]
+    for z in range(n):
 
-outputLines = []
+        if (count % x == 0) & (count % y != 0):
+            outputLines.append("F")
+            count += 1
 
-for i in range(n):
+        elif (count % y == 0) & (count % x != 0):
+            outputLines.append("B")
+            count += 1
 
-    if (count % x == 0) & (count % y != 0):
-        outputLines.append("Fizz")
-        count += 1
+        elif (count % x == 0) & (count % y == 0):
+            outputLines.append("FB")
+            count += 1
+        else:
+            outputLines.append(count)
+            count += 1
 
-    elif (count % y == 0) & (count % x != 0):
-        outputLines.append("Buzz")
-        count += 1
+    outputLines = ' '.join(str(e) for e in outputLines)
+    outputFile = open("output.txt", 'a')
+    outputFile.write(outputLines + '\n')
+    z = 0
 
-    elif (count % x == 0) & (count % y == 0):
-        outputLines.append("Fizz Buzz")
-        count += 1
-    else:
-        outputLines.append(count)
-        count += 1
+    open("output.txt")
 
-outputLines = ' '.join(str(e) for e in outputLines)
-outputFile = open("output.txt", 'a')
-outputFile.write(outputLines)
+
+
